@@ -7,7 +7,7 @@ import { SvgIcons2FontOptions } from 'svgicons2svgfont';
 import color from 'colors-cli';
 import { OptimizeOptions } from 'svgo';
 import { generateIconsSource, generateReactIcons } from './generate';
-import { createSVG, createTTF, createEOT, createWOFF, createWOFF2, createSvgSymbol, copyTemplate, CSSOptions, createHTML, createTypescript, TypescriptOptions } from './utils';
+import { createSVG, createTTF, createWOFF, createWOFF2, createSvgSymbol, copyTemplate, CSSOptions, createHTML, createTypescript, TypescriptOptions } from './utils';
 
 export type SvgToFontOptions = {
   /**
@@ -228,7 +228,6 @@ export default async (options: SvgToFontOptions = {}) => {
     });
 
     const ttf = await createTTF(options);
-    await createEOT(options, ttf);
     await createWOFF(options, ttf);
     await createWOFF2(options, ttf);
     await createSvgSymbol(options);

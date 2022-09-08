@@ -5,7 +5,6 @@ import ejs from 'ejs';
 import color from 'colors-cli';
 import cheerio from 'cheerio';
 import svg2ttf from 'svg2ttf';
-import ttf2eot from 'ttf2eot';
 import ttf2woff from 'ttf2woff';
 import ttf2woff2 from 'ttf2woff2';
 import copy from 'copy-template-dir';
@@ -159,24 +158,6 @@ export function createTTF(options: SvgToFontOptions = {}): Promise<Buffer> {
       }
       console.log(`${color.green('SUCCESS')} ${color.blue('TTF')} font successfully created!\n  ╰┈▶ ${DIST_PATH}`);
       resolve(ttfBuf);
-    });
-  });
-};
-
-/**
- * TTF font to EOT
- */
-export function createEOT(options: SvgToFontOptions = {}, ttf: Buffer) {
-  return new Promise((resolve, reject) => {
-    const DIST_PATH = path.join(options.dist, options.fontName + '.eot');
-    const eot = Buffer.from(ttf2eot(ttf).buffer);
-
-    fs.writeFile(DIST_PATH, eot, (err: NodeJS.ErrnoException) => {
-      if (err) {
-        return reject(err);
-      }
-      console.log(`${color.green('SUCCESS')} ${color.blue('EOT')} font successfully created!\n  ╰┈▶ ${DIST_PATH}`);
-      resolve(eot);
     });
   });
 };
